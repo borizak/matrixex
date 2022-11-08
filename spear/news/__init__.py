@@ -1,8 +1,8 @@
 import spear
-from spear.common import DriverChrome as Driver
+from spear.common import DriverChrome as Driver, WebData
 
 
-class BBC_HOMEPAGE(common.WebData):
+class BBC_HOMEPAGE(WebData):
     source_url = 'https://www.bbc.com/'
     updated = None 
     storage = None

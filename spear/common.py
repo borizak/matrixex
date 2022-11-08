@@ -3,19 +3,20 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
 # Internal Objects
-__path_ChromeDriver = os.path.join(os.getcwd(), 'chromedriver.exe')
 
 # Driver Class  
 class DriverChrome():
+
     def __enter__(self):
+        path = os.path.join(os.getcwd(), 'chromedriver.exe')
         driver_options = Options()
         driver_options.headless = True
-        driver_chrome = webdriver.Chrome(options = driver_options, executable_path= __path_ChromeDriver)
+        self.driver = webdriver.Chrome(options = driver_options, executable_path= path)
     
-        return driver_chrome
+        return self.driver
     
     def __exit__(self, exc_type, exc_value, exc_tb):
-        self.quit()
+        self.driver.quit()
 
 #Base Classes
 class WebData():
