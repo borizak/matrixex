@@ -1,6 +1,6 @@
 import spear
 from spear.news import BBC_HOMEPAGE 
-spear.init()
+
 accum = True
 bbc = BBC_HOMEPAGE()
 

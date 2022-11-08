@@ -9,10 +9,7 @@ pip install -r requirements.txt
         https://chromedriver.storage.googleapis.com/<YOUR CHROME VERSION>/<YOUR OS VERSION>
     into :
         ~/.../spear/
- ?????       
-3. run the flask application
-4. go to 'localhost:5000/spear/'
-  ??????
+
 =================
 MODULE STRUCTURE:
 =================
@@ -66,3 +63,10 @@ In spear/<data category>/__init__.py :
         - This method should return a list of objects (typically url's, but could be any object) which are considered 'hits' for the searched string.
         - This method should return an empty list if no 'hits' were found
         - This method should return a None object only if the data for the source was not scraped yet.
+
+2. The spear module provides an easy to use Selenium driver (for chrome). 
+  ```
+  from spear.common import DriverChrome
+  using DriverChrome() as drv:
+        drv.get('www.google.com')
+  ``` 

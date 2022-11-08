@@ -1,13 +1,14 @@
 import spear
-from spear.common import WebData, driver_chrome as drv
+from spear.common import DriverChrome as Driver
 
-class BBC_HOMEPAGE(WebData):
+
+class BBC_HOMEPAGE(common.WebData):
     source_url = 'https://www.bbc.com/'
     updated = None 
     storage = None
 
     def __init__(self) -> None:
- 
+        
         super().__init__()
 
     @classmethod
@@ -43,8 +44,14 @@ class BBC_HOMEPAGE(WebData):
 
     @classmethod
     def download_main_page_articles(cls):
-        main_page = drv.get(cls.source_url)
-        print('b')
+        articles = []
+        source = None 
+        with Driver() as drv:
+            drv.get(cls.source_url)
+            source = drv.page_source
+        print(source)
+        return articles
+        
     
     @classmethod
     def store_article():

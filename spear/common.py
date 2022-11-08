@@ -1,16 +1,21 @@
 import os
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 
 # Internal Objects
 __path_ChromeDriver = os.path.join(os.getcwd(), 'chromedriver.exe')
 
-# Public Objects
-driver_chrome = None
-
-# Setups
-def driver_chrome_setup():
-    global driver_chrome
-    driver_chrome = webdriver.Chrome(executable_path= __path_ChromeDriver)
+# Driver Class  
+class DriverChrome():
+    def __enter__(self):
+        driver_options = Options()
+        driver_options.headless = True
+        driver_chrome = webdriver.Chrome(options = driver_options, executable_path= __path_ChromeDriver)
+    
+        return driver_chrome
+    
+    def __exit__(self, exc_type, exc_value, exc_tb):
+        self.quit()
 
 #Base Classes
 class WebData():
