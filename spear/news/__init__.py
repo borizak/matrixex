@@ -7,6 +7,7 @@ class BBC_HOMEPAGE(WebData):
     storage = None
 
     def __init__(self) -> None:
+ 
         super().__init__()
 
     @staticmethod
