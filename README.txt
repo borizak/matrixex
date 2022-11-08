@@ -67,6 +67,6 @@ In spear/<data category>/__init__.py :
 2. The spear module provides an easy to use Selenium driver (for chrome). 
   ```
   from spear.common import DriverChrome
-  using DriverChrome() as drv:
+  with DriverChrome() as drv:
         drv.get('www.google.com')
   ``` 
