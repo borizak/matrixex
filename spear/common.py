@@ -12,7 +12,7 @@ class DriverChrome():
         driver_options = Options()
         driver_options.headless = True
         self.driver = webdriver.Chrome(options = driver_options, executable_path= path)
-    
+
         return self.driver
     
     def __exit__(self, exc_type, exc_value, exc_tb):
