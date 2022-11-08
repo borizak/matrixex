@@ -4,15 +4,15 @@ class TLV_AIRPORT(WebData):
     updated = None 
     storage = None
 
-    @staticmethod
+    @classmethod
     def pull(cls, *args, **kwargs) -> bool:
         return False
 
-    @staticmethod
+    @classmethod
     def search(cls, value : str, **kwargs) -> list:
         return None
 
-    @staticmethod
+    @classmethod
     def all(cls) -> object:
         return None 
 

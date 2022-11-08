@@ -41,7 +41,7 @@ In spear/<data category>/__init__.py :
 
     1.  - Specify the class attribute 'url' with the source for your data collection.
 
-    2.  - implement a static scraping method, with signature:
+    2.  - implement a classmethod with signature:
                 pull(*args, **kwargs)-> bool
 
         - This main method is responsible for:
@@ -54,13 +54,13 @@ In spear/<data category>/__init__.py :
             True if the process succeeded. 
             False otherwise.
 
-    3. - implement a static load method, with signature:
+    3. - implement a classmethod with signature:
                 all() -> object
 
         - This method should load ALL the source data from disk/db to memory and return the containing object.
         - This method should return a None object if data for source was not scraped yet.
         
-    4. - implement a static search method, with signature :
+    4. - implement a classmethod with signature:
                 search(value : str , **kwargs) -> list(object)
 
         - This method should return a list of objects (typically url's, but could be any object) which are considered 'hits' for the searched string.

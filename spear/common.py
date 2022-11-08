@@ -20,14 +20,15 @@ class WebData():
 
     def __init__(self) -> None:
         pass 
-    @staticmethod
+
+    @classmethod
     def pull(cls, *args, **kwargs) -> bool:
         return False
 
-    @staticmethod
+    @classmethod
     def search(cls, value : str, **kwargs) -> list:
         return None
 
-    @staticmethod
+    @classmethod
     def all(cls) -> object:
         return None 
