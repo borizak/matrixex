@@ -34,16 +34,16 @@ class BBC_HOMEPAGE(WebData):
         os.mkdir(self.storage)
 
     @classmethod
-    def pull(cls, *args, **kwargs):
+    def pull(cls, *args, **kwargs) -> None:
         with Driver() as drv:
             
             urls = cls.__fetch_urls(drv)
             new_urls = list(set(urls) - set(cls.__known_urls()))
             for url in new_urls:
-                drv.get(f"{cls.source_url}/{url}")
+                drv.get(f"{cls.source_url}/{url}") #TODO < is this allways the case??
                 cls.__articles_buffer[url] = Article(url = url, page_source= drv.page_source)
 
-        cls.__store_articles()
+        cls.__store_articles_from_buffer()
 
     @classmethod
     def search(cls, value : str, **kwargs) -> list(Article):
@@ -69,7 +69,7 @@ class BBC_HOMEPAGE(WebData):
         return [obj.get_attribute('href') for obj in article_objects]
           
     @classmethod
-    def __store_articles_from_buffer(cls):
+    def __store_articles_from_buffer(cls)-> None:
         new_index_values = {}
         for url in cls.articles:
             new_pickle_path = cls.__storage_path_from_url(url)
@@ -92,7 +92,7 @@ class BBC_HOMEPAGE(WebData):
             json.load(cls.__index_file)
 
     @classmethod
-    def __index_add(cls, values : dict): 
+    def __index_add(cls, values : dict) -> None: 
         index = cls.__index()
         for key in values:
             index[key] = values[key]
