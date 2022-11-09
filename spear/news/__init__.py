@@ -109,7 +109,7 @@ class BBC_HOMEPAGE(WebData):
 
     # Trying to Store in case an interruption occured while the buffer still contains data
     def __del__(self):
-        if len(self.articles_buffer) > 0:
+        if len(self.__articles_buffer) > 0:
             try:
                 self.__store_articles()
             except Exception as e:

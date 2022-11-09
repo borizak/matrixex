@@ -1,4 +1,3 @@
-import spear
 from spear.news import BBC_HOMEPAGE 
 
 accum = True
@@ -8,9 +7,9 @@ bbc.pull()
 
 bbc_all = bbc.all()
 
-res = bbc.search('Bremen')
+hits = bbc.search('USA')
 
-print(res)
+print([hit.url for hit in hits])
 
 
 
