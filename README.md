@@ -36,7 +36,7 @@ NOTE-WORTHY SPECIFICS:
     - Manages an index.json file to slightly optimize duplicate checks
 
 - spear.flights.TLV_AIRPORT class:
-    - ?
+    - COULD NOT FINISH DUE TO WEBSITE BLOCKING AUTOMATED DRIVER USAGE    AFTER A FEW TRIES.
 
 INSTRUCTION FOR EXTENDING THE MODULE WITH MORE SOURCES:
 =======================================================
