@@ -7,13 +7,16 @@ from selenium.webdriver.chrome.options import Options
 
 # Driver Class  
 class DriverChrome():
-
+    def __init__(self, visual :bool = False ):
+        self.visual = visual
     def __enter__(self):
         path = os.path.join(os.getcwd(), 'chromedriver.exe')
-        driver_options = Options()
-        driver_options.headless = True
-        self.driver = webdriver.Chrome(options = driver_options, executable_path= path)
-
+        if not self.visual:
+            driver_options = Options()
+            driver_options.headless = True
+            self.driver = webdriver.Chrome(options = driver_options, executable_path= path)
+        else:
+            self.driver = webdriver.Chrome(executable_path= path)
         return self.driver
     
     def __exit__(self, exc_type, exc_value, exc_tb):

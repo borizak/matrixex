@@ -1,3 +1,4 @@
+# THIS IS A PSEUDO-TEST ROUTINE
 from spear.news import BBC_HOMEPAGE 
 
 accum = True
