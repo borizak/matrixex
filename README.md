@@ -34,7 +34,7 @@ NOTE-WORTHY SPECIFICS:
 - spear.news.BBC_HOMEPAGE class:
     - Stores the Article data as pickles, on every pull() request
     - Manages and index.json file to slightly optimize duplicate checks
-    - Exposes a drop_storage()
+
 - spear.flights.TLV_AIRPORT class:
     - ?
 
@@ -67,11 +67,17 @@ In spear/<data category>/__init__.py :
 
         - This method should load ALL the source data from disk/db to memory and return the containing object.
         
-    4. - implement a classmethod with signature:
+    4. Implement a classmethod with signature:
         ```
         search(value : str , **kwargs) -> list(object)
         ```
         - This method should return a list of objects representing the 'hits' for the searched string.
+    
+    5. Implement a classmethod with signature (recommended):
+        ```
+        drop()->None
+        ```
+        - This method should clear/archive all stored data.
 
 2. The spear module provides a safe context manager for Selenium driver (currently only chrome-107). 
 
