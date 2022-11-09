@@ -1,4 +1,3 @@
-======
 SETUP:
 ======
 
@@ -11,7 +10,6 @@ SETUP:
     into :
         ~/.../spear/
 
-=================
 MODULE STRUCTURE:
 =================
 - The spear sub-modules group themed data sources. (spear.news, spear.flights, etc...)
@@ -29,7 +27,6 @@ MODULE STRUCTURE:
 
 (For this exercise, only classes spear.news.BBC_HOMEPAGE and spear.flights.TLV_AIRPORT were implemented.)
 
-=====================
 NOTE-WORTHY SPECIFICS:
 =====================
     - spear.news.BBC_HOMEPAGE class:
@@ -39,7 +36,6 @@ NOTE-WORTHY SPECIFICS:
     - spear.flights.TLV_AIRPORT class:
         - ?
 
-=======================================================
 INSTRUCTION FOR EXTENDING THE MODULE WITH MORE SOURCES:
 =======================================================
 In spear/<data category>/__init__.py :
