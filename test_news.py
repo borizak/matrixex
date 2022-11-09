@@ -8,7 +8,7 @@ bbc.pull()
 
 bbc_all = bbc.all()
 
-res = bbc.search('Congress')
+res = bbc.search('Bremen')
 
 print(res)
 

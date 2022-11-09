@@ -32,8 +32,8 @@ MODULE STRUCTURE:
 NOTE-WORTHY SPECIFICS:
 =====================
 - spear.news.BBC_HOMEPAGE class:
-    - Stores the Article data as pickles, on every pull() request
-    - Manages and index.json file to slightly optimize duplicate checks
+    - Stores the Article content as json files, on every pull() request
+    - Manages an index.json file to slightly optimize duplicate checks
 
 - spear.flights.TLV_AIRPORT class:
     - ?
