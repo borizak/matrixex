@@ -15,6 +15,7 @@ MODULE STRUCTURE:
 - The spear sub-modules group themed data sources. (spear.news, spear.flights, etc...)
 - Each sub-module exposes spear.common.WebData classes, one per supported website/data source, which contain 3 main functions:
 
+        
         - Attributes (read only):
             - source_url : str 
             - updated : datetime.datetime 
