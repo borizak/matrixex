@@ -3,7 +3,8 @@ SETUP:
 ======
 
 1. run :
-pip install -r requirements.txt
+    pip install -r requirements.txt
+
 2. 
     download driver binary from:
         https://chromedriver.storage.googleapis.com/<YOUR CHROME VERSION>/<YOUR OS VERSION>
@@ -13,7 +14,6 @@ pip install -r requirements.txt
 =================
 MODULE STRUCTURE:
 =================
-- The spear module requires explicit call for the init() method
 - The spear sub-modules group themed data sources. (spear.news, spear.flights, etc...)
 - Each sub-module exposes spear.common.WebData classes, one per supported website/data source, which contain 3 main functions:
         - Attributes (read only):
@@ -22,51 +22,58 @@ MODULE STRUCTURE:
             - storage : str
         
         - Functions:
-            - pull(*args, **kwargs) -> bool
+            - pull(*args, **kwargs) -> None
             - search(value : str, **kwargs) -> list(object)
             - all() -> object 
+            - drop() -> None
 
 (For this exercise, only classes spear.news.BBC_HOMEPAGE and spear.flights.TLV_AIRPORT were implemented.)
 
-======================================
-EXTENDING THE MODULE WITH MORE SOURCES:
-======================================
+=====================
+NOTE-WORTHY SPECIFICS:
+=====================
+    - spear.news.BBC_HOMEPAGE class:
+        - Stores the Article data as pickles, on every pull() request
+        - Manages and index.json file to slightly optimize duplicate checks
+        - Exposes a drop_storage()
+    - spear.flights.TLV_AIRPORT class:
+        - ?
+
+=======================================================
+INSTRUCTION FOR EXTENDING THE MODULE WITH MORE SOURCES:
+=======================================================
 In spear/<data category>/__init__.py :
 
 1. Implement a class with a descriptive name (typically, name of the data source), inheriting the spear.common.WebData base class.
     In this class:
 
-    1.  - Specify the class attribute 'url' with the source for your data collection.
+    1.  - Set public attributes:
+         'source_url' with the source for your data collection.
+         'storage' with a pointer to a static location on disk/db etc.
 
     2.  - implement a classmethod with signature:
                 pull(*args, **kwargs)-> bool
 
-        - This main method is responsible for:
+        - This method is responsible for:
             1. All collection logic, STRICTLY from the class 'source_url' attribute.
-            2. Storing the data on disk/db/whatever is relevant to your solution.
+            2. Storing the data on disk/db/etc.
         - This method should update the class read-only attributes:
-            - 'updated'(datetime.datetime) with the relevant run time
             - 'storage'(str) with a string pointing to your chosen storage solution
-        - This method should return:
-            True if the process succeeded. 
-            False otherwise.
 
     3. - implement a classmethod with signature:
-                all() -> object
+                all() -> list
 
         - This method should load ALL the source data from disk/db to memory and return the containing object.
-        - This method should return a None object if data for source was not scraped yet.
         
     4. - implement a classmethod with signature:
                 search(value : str , **kwargs) -> list(object)
 
-        - This method should return a list of objects (typically url's, but could be any object) which are considered 'hits' for the searched string.
-        - This method should return an empty list if no 'hits' were found
-        - This method should return a None object only if the data for the source was not scraped yet.
+        - This method should return a list of objects representing the 'hits' for the searched string.
 
-2. The spear module provides an easy to use Selenium driver (for chrome). 
+2. The spear module provides a safe context manager for Selenium driver (currently only chrome-107). 
   ```
   from spear.common import DriverChrome
   with DriverChrome() as drv:
         drv.get('www.google.com')
-  ``` 
+  ```
+
